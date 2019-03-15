@@ -1,26 +1,33 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import { PhoneProvider } from "./Contexts/PhoneContext";
+import Home from "./components/Home";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import NotFound from "./components/pages/NotFound";
+import Header from "./components/Header";
+import Phones from "./components/Phones";
+import About from "./components/pages/About";
+import Footer from "./components/Footer";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <PhoneProvider>
+        <Router onUpdate={() => window.scrollTo(0, 0)}>
+          <React.Fragment>
+            <Header />
+            <section id="mainContent">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/phones" component={Phones} />
+                <Route path="/about" component={About} />
+                <Route component={NotFound} />
+              </Switch>
+            </section>
+            <Footer />
+          </React.Fragment>
+        </Router>
+      </PhoneProvider>
     );
   }
 }

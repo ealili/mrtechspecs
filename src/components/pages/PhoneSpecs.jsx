@@ -16,6 +16,29 @@ class PhoneSpecs extends Component {
       return value.sonies;
     }
   }
+  fetchData = id => {
+    alert(
+      "Phone has been deleted from the database! Refresh the page to see the changes!"
+    );
+    this.props.history.goBack();
+    fetch("http://localhost:4000/delete/" + id, {
+      method: "GET",
+      dataType: "JSON",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      }
+    })
+      .then(resp => {
+        return resp.json();
+      })
+      .then(data => {
+        this.setState({ suggestion: data.suggestion });
+      })
+      .catch(error => {
+        console.log(error, "catch the hoop");
+      });
+  };
+
   render() {
     return (
       <PhoneConsumer>
@@ -43,7 +66,7 @@ class PhoneSpecs extends Component {
                     <h4 className="my-4 text-center text-lg-left">
                       Phone Specs
                     </h4>
-                    <table class="table table-striped">
+                    <table className="table table-striped">
                       <tbody>
                         <tr>
                           <th>Technology</th>
@@ -79,11 +102,25 @@ class PhoneSpecs extends Component {
                         </tr>
                         <tr>
                           <th>OS</th>
-                          <td>{requiredPhone.OS}</td>
+                          <td>{requiredPhone.os}</td>
                         </tr>
                         <tr>
                           <th>Battery</th>
                           <td>{requiredPhone.battery}</td>
+                        </tr>
+                        <tr>
+                          <th>
+                            Press the button to the right to delete this phone
+                            from database
+                          </th>
+                          <td>
+                            <button
+                              className="btn btn-danger btn-lg"
+                              onClick={() => this.fetchData(requiredPhone.id)}
+                            >
+                              Delete
+                            </button>
+                          </td>
                         </tr>
                       </tbody>
                     </table>

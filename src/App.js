@@ -8,12 +8,13 @@ import Header from "./components/Header";
 import Phones from "./components/Phones";
 import About from "./components/pages/About";
 import Footer from "./components/Footer";
+import AddPhone from "./components/AddPhone";
 
 class App extends Component {
   render() {
     return (
       <PhoneProvider>
-        <Router onUpdate={() => window.scrollTo(0, 0)}>
+        <Router>
           <React.Fragment>
             <Header />
             <section id="mainContent">
@@ -21,6 +22,7 @@ class App extends Component {
                 <Route exact path="/" component={Home} />
                 <Route path="/phones" component={Phones} />
                 <Route path="/about" component={About} />
+                <Route path="/addphone" component={AddPhone} />
                 <Route component={NotFound} />
               </Switch>
             </section>

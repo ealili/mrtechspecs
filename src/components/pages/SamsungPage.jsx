@@ -1,27 +1,37 @@
 import React, { Component } from "react";
-import { PhoneConsumer } from "../../Contexts/PhoneContext";
 import Phone from "../Phone";
 
 export default class SamsungPage extends Component {
+  state = {
+    loading: true,
+    samsungs: null
+  };
+  async componentDidMount() {
+    const url = "http://localhost/api/phone/fetch.php?mname=Samsung";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ samsungs: data, loading: false });
+  }
+
   render() {
-    return (
-      <PhoneConsumer>
-        {value => {
-          const { samsungs } = value;
-          return (
-            <React.Fragment>
-              <h3 className="my-4 text-center text-lg-left">Samsung Phones</h3>
-              <div className="container">
-                <div className="row text-center text-lg-left">
-                  {samsungs.map(samsung => (
-                    <Phone key={samsung.id} phone={samsung} />
-                  ))}
-                </div>
-              </div>
-            </React.Fragment>
-          );
-        }}
-      </PhoneConsumer>
-    );
+    this.state.loading || !this.state.samsungs
+      ? console.log("Loading...")
+      : console.log("Samsung phones are loaded");
+    if (this.state.loading) {
+      return <React.Fragment>Data is being loaded</React.Fragment>;
+    } else {
+      return (
+        <React.Fragment>
+          <h3 className="my-4 text-center text-lg-left">Samsung Phones</h3>
+          <div className="container">
+            <div className="row text-center text-lg-left">
+              {this.state.samsungs.map(samsung => (
+                <Phone key={samsung.id} phone={samsung} />
+              ))}
+            </div>
+          </div>
+        </React.Fragment>
+      );
+    }
   }
 }

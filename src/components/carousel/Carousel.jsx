@@ -21,11 +21,11 @@ export default function Carousel() {
           <div
             className="carousel-item active"
             style={{
-              backgroundImage: `url(${require("../../half-sliders/galaxyFold.jpg")})`
+              backgroundImage: `url(${require("../../half-sliders/note10Carousel.jpg")})`
             }}
           >
             <div className="carousel-caption d-none d-md-block">
-              <h3>Galaxy Fold</h3>
+              <h3>Title Caption</h3>
               <p>
                 It didn't just change the shape of the phone. It changed the
                 shape of tomorrow.{" "}
@@ -35,7 +35,7 @@ export default function Carousel() {
           <div
             className="carousel-item"
             style={{
-              backgroundImage: `url(${require("../../half-sliders/iPhoneXs.jpg")})`
+              backgroundImage: `url(${require("../../half-sliders/iphone11pro.jpg")})`
             }}
           >
             <div className="carousel-caption d-none d-md-block">

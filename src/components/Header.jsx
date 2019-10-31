@@ -21,8 +21,8 @@ export default class Header extends Component {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+          <ul className="navbar-nav justify-content-center">
             <li className="nav-item">
               <Link to="/" className="nav-link">
                 Home
@@ -38,21 +38,12 @@ export default class Header extends Component {
                 About
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/addphone" className="nav-link">
+                Add Phone
+              </Link>
+            </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
         </div>
       </nav>
     );

@@ -5,6 +5,7 @@ export default function About() {
     <React.Fragment>
       <div id="contact" className="container bg-grey">
         <h2 className="text-center">CONTACT</h2>
+        <br />
         <div className="row">
           <div className="col-sm-5">
             <p>
@@ -74,6 +75,7 @@ export default function About() {
           title="iframe"
         />
       </div>
+      <br />
     </React.Fragment>
   );
 }

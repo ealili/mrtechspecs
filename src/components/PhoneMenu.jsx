@@ -7,7 +7,7 @@ export default function PhoneMenu() {
       <Link to="/phones/samsung" className="nav-item nav-link">
         Samsung
       </Link>
-      <Link to="/phones/iPhone" className="nav-item nav-link">
+      <Link to="/phones/apple" className="nav-item nav-link">
         iPhone
       </Link>
       <Link to="/phones/huawei" className="nav-item nav-link">

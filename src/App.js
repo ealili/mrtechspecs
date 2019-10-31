@@ -1,35 +1,30 @@
 import React, { Component } from "react";
 import "./App.css";
-import { PhoneProvider } from "./Contexts/PhoneContext";
-import Home from "./components/Home";
+import Home from "./components/pages/homepage/Home";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import NotFound from "./components/pages/NotFound";
-import Header from "./components/Header";
-import Phones from "./components/Phones";
-import About from "./components/pages/About";
-import Footer from "./components/Footer";
-import AddPhone from "./components/AddPhone";
+import Header from "./components/header/Header";
+import PhonesRoutes from "./components/PhonesRoutes";
+import About from "./components/pages/about/About";
+import Footer from "./components/footer/Footer";
 
 class App extends Component {
   render() {
     return (
-      <PhoneProvider>
         <Router>
           <React.Fragment>
             <Header />
             <section id="mainContent">
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/phones" component={Phones} />
+                <Route path="/phones" component={PhonesRoutes} />
                 <Route path="/about" component={About} />
-                <Route path="/addphone" component={AddPhone} />
                 <Route component={NotFound} />
               </Switch>
             </section>
             <Footer />
           </React.Fragment>
         </Router>
-      </PhoneProvider>
     );
   }
 }

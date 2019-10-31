@@ -1,6 +1,6 @@
 import React from "react";
-import Carousel from "./carousel/Carousel";
-import MixedPhones from "./pages/MixedPhones";
+import Carousel from "../../carousel/Carousel";
+import MixedPhones from "../MixedPhones";
 
 export default function Home() {
   return (

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Phone from "../Phone";
+import PhoneThumbnail from "../PhoneThumbnail";
 
 export default class SamsungPage extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class SamsungPage extends Component {
           <div className="container">
             <div className="row text-center text-lg-left">
               {this.state.samsungs.map(samsung => (
-                <Phone key={samsung.id} phone={samsung} />
+                <PhoneThumbnail key={samsung.id} phone={samsung} />
               ))}
             </div>
           </div>

@@ -6,7 +6,7 @@ export default class Header extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark">
         <Link to="/" className="navbar-brand">
-          <img src={require("./logo.png")} alt="Logo" />
+          <img src={require("../../logo.png")} alt="Logo" />
         </Link>
         <button
           id="navToggler"

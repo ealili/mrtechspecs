@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 
-export default function Carousel() {
+export default function Carousel () {
   return (
     <header>
       <div
@@ -14,42 +14,41 @@ export default function Carousel() {
             data-slide-to="0"
             className="active"
           />
-          <li data-target="#carouselExampleIndicators" data-slide-to="1" />
-          <li data-target="#carouselExampleIndicators" data-slide-to="2" />
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"/>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"/>
         </ol>
         <div className="carousel-inner" role="listbox">
           <div
             className="carousel-item active"
             style={{
-              backgroundImage: `url(${require("../../half-sliders/note10Carousel.jpg")})`
+              backgroundImage: `url(${require('../../half-sliders/iphone11pro.jpg')})`
             }}
           >
             <div className="carousel-caption d-none d-md-block">
-              <h3>Title Caption</h3>
+              <h3>iPhone 11 Pro</h3>
               <p>
-                It didn't just change the shape of the phone. It changed the
-                shape of tomorrow.{" "}
+                Pro cameras. Pro display. Pro performance.{' '}
               </p>
             </div>
           </div>
           <div
             className="carousel-item"
             style={{
-              backgroundImage: `url(${require("../../half-sliders/iphone11pro.jpg")})`
+              backgroundImage: `url(${require('../../half-sliders/note10Carousel.jpg')})`
             }}
           >
             <div className="carousel-caption d-none d-md-block">
-              <h3>The all new iPhone XS Max</h3>
+              <h3>Next level power.</h3>
               <p>
-                Having the A12 Bionic making it the smartest and most powerful
-                chip ever in a smartphone
+                Experience that’s like a computer, a gaming console, a movie-tech camera,
+                and an intelligent pen, all in one device.
               </p>
             </div>
           </div>
           <div
             className="carousel-item"
             style={{
-              backgroundImage: `url(${require("../../half-sliders/mate20Pro.jpg")})`
+              backgroundImage: `url(${require('../../half-sliders/mate20Pro.jpg')})`
             }}
           >
             <div className="carousel-caption d-none d-md-block">
@@ -67,7 +66,7 @@ export default function Carousel() {
           role="button"
           data-slide="prev"
         >
-          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span className="carousel-control-prev-icon" aria-hidden="true"/>
           <span className="sr-only">Previous</span>
         </a>
         <a
@@ -76,10 +75,10 @@ export default function Carousel() {
           role="button"
           data-slide="next"
         >
-          <span className="carousel-control-next-icon" aria-hidden="true" />
+          <span className="carousel-control-next-icon" aria-hidden="true"/>
           <span className="sr-only">Next</span>
         </a>
       </div>
     </header>
-  );
+  )
 }

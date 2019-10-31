@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Phone from "../Phone";
+import PhoneThumbnail from "../PhoneThumbnail";
 
-export default class HuaweiPage extends Component {
+export default class MixedPhones extends Component {
   state = {
     loading: true,
     topPhones: null
@@ -26,7 +26,7 @@ export default class HuaweiPage extends Component {
           <div className="container">
             <div className="row text-center text-lg-left">
               {this.state.topPhones.map(top => (
-                <Phone key={top.id} phone={top} />
+                <PhoneThumbnail key={top.id} phone={top} />
               ))}
             </div>
           </div>

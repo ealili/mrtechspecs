@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Phone from "../Phone";
+import PhoneThumbnail from "../PhoneThumbnail";
 
 export default class GooglePage extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class GooglePage extends Component {
           <div className="container">
             <div className="row text-center text-lg-left">
               {this.state.googlephones.map(google => (
-                <Phone key={google.id} phone={google} />
+                <PhoneThumbnail key={google.id} phone={google} />
               ))}
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export default class Phone extends Component {
+export default class PhoneThumbnail extends Component {
   render() {
     const { id, name, imgSource } = this.props.phone;
     const link = `/phones/${id}`;

@@ -7,7 +7,7 @@ export default class MixedPhones extends Component {
     topPhones: null
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/fetch_phone_data.php";
+    const url = "http://localhost/api/phone/get_all_phones.php";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ topPhones: data, loading: false });

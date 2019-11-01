@@ -7,7 +7,7 @@ export default class HuaweiPage extends Component {
     huaweis: null
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/fetch.php?mname=Huawei";
+    const url = "http://localhost/api/phone/get_company_phones.php?mname=Huawei";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ huaweis: data, loading: false });

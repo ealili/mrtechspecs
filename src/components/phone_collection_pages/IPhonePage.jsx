@@ -7,7 +7,7 @@ export default class IPhonePage extends Component {
     iphones: null
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/fetch.php?mname=Apple";
+    const url = "http://localhost/api/phone/get_company_phones.php?mname=Apple";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ iphones: data, loading: false });

@@ -7,7 +7,7 @@ export default class SamsungPage extends Component {
     samsungs: null
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/fetch.php?mname=Samsung";
+    const url = "http://localhost/api/phone/get_company_phones.php?mname=Samsung";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ samsungs: data, loading: false });

@@ -6,13 +6,12 @@ class PhoneSpecifications extends Component {
     phoneSpecs: null
   };
   async componentDidMount() {
-    const url = `http://localhost/api/phone/request_phone.php?id=${this.props.match.params.id}`
+    const url = `http://localhost/api/phone/get_phone.php?id=${this.props.match.params.id}`
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ phoneSpecs: data, loading: false });
   }
   render () {
-    console.log(this.state.phoneSpecs)
     if (this.state.loading)
       return <React.Fragment>Loading...</React.Fragment>
     const requiredPhone = this.state.phoneSpecs[0]

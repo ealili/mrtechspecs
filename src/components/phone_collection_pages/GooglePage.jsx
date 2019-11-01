@@ -7,7 +7,7 @@ export default class GooglePage extends Component {
     googlephones: null
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/fetch.php?mname=Google";
+    const url = "http://localhost/api/phone/get_company_phones.php?mname=Google";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ googlephones: data, loading: false });

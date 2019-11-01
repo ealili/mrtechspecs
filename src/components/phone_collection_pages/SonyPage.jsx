@@ -7,7 +7,7 @@ export default class SonyPage extends Component {
     sonies: null
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/fetch.php?mname=Sony";
+    const url = "http://localhost/api/phone/get_company_phones.php?mname=Sony";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ sonies: data, loading: false });

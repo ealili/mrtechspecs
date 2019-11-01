@@ -38,11 +38,6 @@ export default class Header extends Component {
                 About
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/addphone" className="nav-link">
-                Add Phone
-              </Link>
-            </li>
           </ul>
         </div>
       </nav>

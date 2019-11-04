@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function PhoneMenu() {
+export default function PhoneMenu () {
   return (
     <nav className="nav nav-pills nav-justified">
       <Link to="/phones/samsung" className="nav-item nav-link">
@@ -20,5 +20,5 @@ export default function PhoneMenu() {
         Sony
       </Link>
     </nav>
-  );
+  )
 }

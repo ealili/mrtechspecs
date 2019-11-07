@@ -8,6 +8,7 @@ import PhonesRoutes from "./components/PhonesRoutes";
 import About from "./components/pages/about/About";
 import Footer from "./components/footer/Footer";
 import AddPhone from './components/AddPhone'
+import Admin  from './components/admin/Admin'
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
                 <Route path="/phones" component={PhonesRoutes} />
                 <Route path="/about" component={About} />
                 <Route path="/addphone" component={AddPhone} />
+                <Route path="/admin" component={Admin}/>
                 <Route component={NotFound} />
               </Switch>
             </section>

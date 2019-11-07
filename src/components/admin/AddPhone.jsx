@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 
 export default class extends Component {
-  handleChange (event) {
-    this.setState({ [event.target.name]: event.target.value })
+
+  state = {
+    loading: true,
+    manufacturers: []
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
+  async componentDidMount () {
+    const url = `http://localhost/api/manufacturer/get_all_manufacturers.php`
+    const response = await fetch(url)
+    const data = await response.json()
+    this.setState({ manufacturers: data, loading: false })
   }
 
   render () {
+    if (this.state.loading)
+      return <h3>Loading...</h3>
+    console.log(this.state.manufacturers)
     return (
       <div className="container">
         <div className="card mx-xl-5">
@@ -20,17 +28,6 @@ export default class extends Component {
               method="POST"
               onSubmit={() => this.handleSubmit}
             >
-              <label htmlFor="phoneID" className="grey-text font-weight-light">
-                Phone ID
-              </label>
-              <input
-                className="form-control"
-                name="id"
-                id="id"
-                placeholder="Phone Id"
-                required
-              />{' '}
-              <br/>
               <label
                 htmlFor="displayType"
                 className="grey-text font-weight-light"

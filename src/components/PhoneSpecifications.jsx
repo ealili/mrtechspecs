@@ -13,7 +13,7 @@ class PhoneSpecifications extends Component {
   }
   render () {
     if (this.state.loading)
-      return <React.Fragment>Loading...</React.Fragment>
+      return <div className="lds-hourglass"></div>
     const requiredPhone = this.state.phoneSpecs[0]
     return (
       <section className="py-5">

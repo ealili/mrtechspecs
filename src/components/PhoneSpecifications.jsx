@@ -37,6 +37,10 @@ class PhoneSpecifications extends Component {
               <table className="table table-striped">
                 <tbody>
                 <tr>
+                  <th>Production Year</th>
+                  <td>{requiredPhone.productionYear}</td>
+                </tr>
+                <tr>
                   <th>Technology</th>
                   <td>{requiredPhone.technology}</td>
                 </tr>
@@ -71,10 +75,6 @@ class PhoneSpecifications extends Component {
                 <tr>
                   <th>OS</th>
                   <td>{requiredPhone.os}</td>
-                </tr>
-                <tr>
-                  <th>Production Year</th>
-                  <td>{requiredPhone.productionYear}</td>
                 </tr>
                 <tr>
                   <th>Battery</th>

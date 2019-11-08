@@ -8,7 +8,6 @@ export default class extends Component {
   }
 
   async componentDidMount () {
-    this.isMounted = true;
     const url = `http://localhost/api/manufacturer/get_all_manufacturers.php`
     const response = await fetch(url)
     const data = await response.json()
@@ -20,10 +19,9 @@ export default class extends Component {
 
   }
 
-
   render () {
     if (this.state.loading)
-      return <h3>Loading...</h3>
+      return <div className="lds-hourglass"></div>
     console.log(this.state.manufacturers)
     return (
       <div className="container">

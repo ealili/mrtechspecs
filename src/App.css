@@ -14,13 +14,24 @@ body {
 }
 
 .carousel-item {
-  height: 70vh;
-  min-height: 300px;
+  height: 90vh;
+  min-height: 500px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.carousel .item {
+  height: 500px;
+}
+
+.item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 400px;
 }
 
 h2 {

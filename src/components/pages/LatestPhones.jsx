@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import PhoneThumbnail from "../PhoneThumbnail";
 
-export default class MixedPhones extends Component {
+export default class LatestPhones extends Component {
   state = {
     loading: true,
-    topPhones: null
+    latestPhones: []
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/get_all_phones.php";
+    const url = "http://localhost/api/phone/get_latest_phones.php";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ topPhones: data, loading: false });
+    this.setState({ latestPhones: data, loading: false });
   }
 
   render() {
@@ -19,11 +19,11 @@ export default class MixedPhones extends Component {
     } else {
       return (
         <React.Fragment>
-          <h3 className="my-4 text-center text-lg-left">Top Phones</h3>
+          <h3 className="my-4 text-center text-lg-left">Latest Phones</h3>
           <div className="container">
             <div className="row text-center text-lg-left">
-              {this.state.topPhones.map(top => (
-                <PhoneThumbnail key={top.id} phone={top} />
+              {this.state.latestPhones.map(latestPhone => (
+                <PhoneThumbnail key={latestPhone.id} phone={latestPhone} />
               ))}
             </div>
           </div>

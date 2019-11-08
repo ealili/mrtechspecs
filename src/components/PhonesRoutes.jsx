@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PhoneMenu from './PhoneMenu'
-import MixedPhones from './pages/MixedPhones'
+import LatestPhones from './pages/LatestPhones'
 import { Switch, Route } from 'react-router-dom'
 import PhoneSpecifications from './PhoneSpecifications'
 import Manufacturer from './Manufacturer'
@@ -28,7 +28,7 @@ class PhonesRoutes extends Component {
           <PhoneMenu/>
           <div className="row text-center text-lg-left"/>
           <Switch>
-            <Route exact path="/phones" component={MixedPhones}/>
+            <Route exact path="/phones" component={LatestPhones}/>
             <Route path="/phones/manufacturer/:mname" component={Manufacturer}/>
             <Route path="/phones/:id" component={PhoneSpecifications}/>
           </Switch>

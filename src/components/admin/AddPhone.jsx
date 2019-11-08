@@ -8,11 +8,18 @@ export default class extends Component {
   }
 
   async componentDidMount () {
+    this.isMounted = true;
     const url = `http://localhost/api/manufacturer/get_all_manufacturers.php`
     const response = await fetch(url)
     const data = await response.json()
     this.setState({ manufacturers: data, loading: false })
   }
+
+  //
+  handleChange = (e) => {
+
+  }
+
 
   render () {
     if (this.state.loading)
@@ -26,8 +33,31 @@ export default class extends Component {
             <form
               action="http://localhost/api/phone/create_phone.php"
               method="POST"
-              onSubmit={() => this.handleSubmit}
+              onSubmit={this.handleSubmit}
             >
+              <label htmlFor="name" className="grey-text font-weight-light">
+                Phone Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                placeholder="Phone Name"
+                required
+              />
+              <br/>
+              <label htmlFor="maname" className="grey-text font-weight-light">
+                Manufacturer Name
+              </label>
+              <input
+                className="form-control"
+                id="maname"
+                name="mname"
+                placeholder="mname"
+                required
+              />
+              <br/>
               <label
                 htmlFor="displayType"
                 className="grey-text font-weight-light"
@@ -92,28 +122,7 @@ export default class extends Component {
                 required
               />
               <br/>
-              <label htmlFor="maname" className="grey-text font-weight-light">
-                Manufacturer Name
-              </label>
-              <input
-                className="form-control"
-                id="maname"
-                name="mname"
-                placeholder="mname"
-                required
-              />
-              <br/>
-              <label htmlFor="pname" className="grey-text font-weight-light">
-                Phone Name
-              </label>
-              <input
-                className="form-control"
-                id="pname"
-                name="name"
-                placeholder="Phone Name"
-                required
-              />
-              <br/>
+
               <label htmlFor="tech" className="grey-text font-weight-light">
                 Technology
               </label>
@@ -155,6 +164,20 @@ export default class extends Component {
                 id="os"
                 name="os"
                 placeholder="os"
+                required
+              />
+              <br/>
+              <label htmlFor="os" className="grey-text font-weight-light">
+                Production Year
+              </label>
+              <input
+                type="number"
+                min="2014"
+                max="2019"
+                className="form-control"
+                id="productionYear"
+                name="productionYear"
+                placeholder="productionYear"
                 required
               />
               <br/>

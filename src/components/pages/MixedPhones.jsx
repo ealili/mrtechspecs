@@ -14,11 +14,8 @@ export default class MixedPhones extends Component {
   }
 
   render() {
-    this.state.loading || !this.state.topPhones
-      ? console.log("Loading...")
-      : console.log("Top phones are loaded");
     if (this.state.loading) {
-      return <React.Fragment>Data is being loaded</React.Fragment>;
+      return <div className="lds-hourglass"></div>
     } else {
       return (
         <React.Fragment>

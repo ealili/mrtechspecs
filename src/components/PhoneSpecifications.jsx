@@ -73,6 +73,10 @@ class PhoneSpecifications extends Component {
                   <td>{requiredPhone.os}</td>
                 </tr>
                 <tr>
+                  <th>Production Year</th>
+                  <td>{requiredPhone.productionYear}</td>
+                </tr>
+                <tr>
                   <th>Battery</th>
                   <td>{requiredPhone.battery}</td>
                 </tr>

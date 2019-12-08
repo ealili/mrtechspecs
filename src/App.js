@@ -7,8 +7,9 @@ import Header from "./components/header/Header";
 import PhonesRoutes from "./components/PhonesRoutes";
 import About from "./components/pages/about/About";
 import Footer from "./components/footer/Footer";
-import AddPhone from './components/admin/AddPhone'
-import Admin  from './components/admin/Admin'
+import AddPhone from './components/admin/AddPhone';
+import Admin  from './components/admin/Admin';
+import Login from './components/pages/login/login.jsx';
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
                 <Route path="/about" component={About} />
                 <Route path="/admin/addphone" component={AddPhone} />
                 <Route path="/admin" component={Admin}/>
+                <Route path="/login" component={Login}/>
                 <Route component={NotFound} />
               </Switch>
             </section>

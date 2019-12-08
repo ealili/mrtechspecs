@@ -10,6 +10,7 @@ import Footer from './components/footer/Footer'
 import AddPhone from './components/admin/AddPhone'
 import Admin from './components/admin/Admin'
 import Login from './components/pages/login/Login'
+import Comparator from './components/pages/comparator/Comparator'
 
 class App extends Component {
   render () {
@@ -25,6 +26,7 @@ class App extends Component {
               <Route path="/admin/addphone" component={AddPhone}/>
               <Route path="/admin" component={Admin}/>
               <Route path="/login" component={Login}/>
+              <Route path="/compare" component={Comparator}/>
               <Route component={NotFound}/>
             </Switch>
           </section>

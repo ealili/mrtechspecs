@@ -39,6 +39,12 @@ export default class Header extends Component {
             </li>
             <li className="nav-item" data-toggle="collapse"
                 data-target=".navbar-collapse">
+              <Link to="/compare" className="nav-link">
+                Compare
+              </Link>
+            </li>
+            <li className="nav-item" data-toggle="collapse"
+                data-target=".navbar-collapse">
               <Link to="/about" className="nav-link">
                 About
               </Link>

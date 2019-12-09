@@ -4,7 +4,10 @@ export default class extends Component {
 
   state = {
     loading: true,
-    manufacturers: []
+    manufacturers: [],
+    exists: false,
+    buttonDisabled: false,
+    btnStyle: 'btn btn-md btn-success'
   }
 
   async componentDidMount () {
@@ -14,15 +17,31 @@ export default class extends Component {
     this.setState({ manufacturers: data, loading: false })
   }
 
-  //
-  handleChange = (e) => {
-
+  handleChange (e) {
+    let checkId = e.target.value
+    checkId = checkId.charAt(0).toLowerCase() + checkId.slice(1)
+    checkId = checkId.replace(/\s/g, '')
+    fetch(`http://localhost/api/phone/get_phone.php?id=${checkId}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          this.setState({
+            exists: true,
+            buttonDisabled: true,
+            btnStyle: 'btn btn-md btn-secondary'
+          })
+        } else
+          this.setState({
+            exists: false,
+            buttonDisabled: false,
+            btnStyle: 'btn btn-md btn-success'
+          })
+      })
   }
 
   render () {
     if (this.state.loading)
       return <div className="lds-hourglass"></div>
-    console.log(this.state.manufacturers)
     return (
       <div className="container">
         <div className="card mx-xl-5">
@@ -31,30 +50,35 @@ export default class extends Component {
             <form
               action="http://localhost/api/phone/create_phone.php"
               method="POST"
-              onSubmit={this.handleSubmit}
             >
               <label htmlFor="name" className="grey-text font-weight-light">
                 Phone Name
               </label>
+              {this.state.exists ? <span style={{ color: 'red', float: 'right' }}>* This phone already
+                  exists</span> : null}
+
               <input
                 type="text"
                 className="form-control"
                 id="name"
                 name="name"
                 placeholder="Phone Name"
+                onChange={this.handleChange.bind(this)}
                 required
               />
               <br/>
               <label htmlFor="maname" className="grey-text font-weight-light">
                 Manufacturer Name
-              </label>
-              <input
-                className="form-control"
-                id="maname"
-                name="mname"
-                placeholder="mname"
-                required
-              />
+              </label><br/>
+              <select name="Manufacturer">
+                {
+                  this.state.manufacturers.map(m => {
+                    return <option value={m.mname} name='mname' key={m.mname}
+                                   required>{m.mname}</option>
+                  })
+                }
+              </select>
+              <br/>
               <br/>
               <label
                 htmlFor="displayType"
@@ -202,7 +226,8 @@ export default class extends Component {
               />
               <br/>
               <div className="text-center py-4 mt-3">
-                <button type="submit" className="btn btn-md btn-success">
+                <button type="submit" className={this.state.btnStyle}
+                        disabled={this.state.buttonDisabled}>
                   Add phone to database{' '}
                 </button>
               </div>

@@ -1,7 +1,66 @@
 import React, { Component } from 'react'
 
 class Comparator extends Component {
+  state = {
+    loading: true,
+    phones: [],
+    firstPhone: [{
+      name: '',
+      prodcutionYear: '',
+      mname: '',
+      displaySize: '',
+      displayType: '',
+      displayResolution: '',
+      weight: '',
+      battery: '',
+      mainCamera: '',
+      selfieCamera: '',
+      os: '',
+      technology: '',
+      sound: ''
+    }],
+    secondPhone: [{
+      name: '',
+      prodcutionYear: '',
+      mname: '',
+      displaySize: '',
+      displayType: '',
+      displayResolution: '',
+      weight: '',
+      battery: '',
+      mainCamera: '',
+      selfieCamera: '',
+      os: '',
+      technology: '',
+      sound: ''
+    }]
+  }
+
+  componentDidMount () {
+    fetch(`http://localhost/api/phone/get_all_phones.php`)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ phones: data, loading: false })
+      })
+  }
+
+  getFirstPhone () {
+    if (this.refs.firstPhone.value === '')
+      return
+    this.setState({ firstPhone: this.state.phones.filter(phone => phone.id === this.refs.firstPhone.value) })
+  }
+
+  getSecondPhone () {
+    if (this.refs.secondPhone.value === '')
+      return
+    this.setState({ secondPhone: this.state.phones.filter(phone => phone.id === this.refs.secondPhone.value) })
+  }
+
   render () {
+    if (this.state.loading)
+      return <div>Loading...</div>
+    const firstPhone = this.state.firstPhone[0]
+    const secondPhone = this.state.secondPhone[0]
     return (
       <div className="container">
         <div className="row">
@@ -16,71 +75,99 @@ class Comparator extends Component {
                   <table className="table table-striped table-hover">
                     <thead className="thead-inverse">
                     <tr>
-                      <th className="w-25"></th>
-                      <th>First Phone Option Here</th>
-                      <th>Second Phone Option Here</th>
+                      <th className="w-25">
+                      </th>
+                      <th>
+                        <select ref='firstPhone' onChange={this.getFirstPhone.bind(this)}>
+                          <option value="" selected disabled hidden>Choose here</option>
+                          {
+                            this.state.phones.map(phone => {
+                              return <option value={phone.id} name={phone.id}
+                                             key={phone.id}
+                                             required>{phone.name}</option>
+                            })
+                          }
+                        </select>
+                      </th>
+                      <th>
+                        <select ref='secondPhone' onChange={this.getSecondPhone.bind(this)}>
+                          <option value="" selected disabled hidden>Choose here</option>
+                          {
+                            this.state.phones.map(phone => {
+                              return <option value={phone.id} name={phone.id}
+                                             key={phone.id}
+                                             required>{phone.name}</option>
+                            })
+                          }
+                        </select>
+                      </th>
                     </tr>
                     </thead>
-                    <tr>
-                      <td className="w-25 option">Phone Name</td>
-                      <td className=""></td>
-                      <td className=""></td>
-                    </tr>
                     <tbody>
                     <tr>
+                      <td className="w-25 option">Phone Name</td>
+                      <td className="">{firstPhone.name}</td>
+                      <td className="">{secondPhone.name}</td>
+                    </tr>
+                    <tr>
+                      <td className="w-25 option">Manufacturer Name</td>
+                      <td className="">{firstPhone.mname}</td>
+                      <td className="">{secondPhone.mname}</td>
+                    </tr>
+                    <tr>
                       <td className="w-25 option">Production Year</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.prodcutionYear}</td>
+                      <td className="">{secondPhone.prodcutionYear}</td>
                     </tr>
                     <tr>
                       <td className="option">Technology</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.technology}</td>
+                      <td className="">{secondPhone.technology}</td>
                     </tr>
                     <tr>
                       <td className="option">Weight</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.weight}</td>
+                      <td className="">{secondPhone.weight}</td>
                     </tr>
                     <tr>
                       <td className="option">Display Size</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.displaySize}</td>
+                      <td className="">{secondPhone.displaySize}</td>
                     </tr>
                     <tr>
                       <td className="option">Display Type</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.displayType}</td>
+                      <td className="">{secondPhone.displayType}</td>
                     </tr>
                     <tr>
                       <td className="option">Display Resolution</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.displayResolution}</td>
+                      <td className="">{secondPhone.displayResolution}</td>
                     </tr>
                     <tr>
                       <td className="option">Main Camera</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.mainCamera}</td>
+                      <td className="">{secondPhone.mainCamera}</td>
                     </tr>
                     <tr>
                       <td className="option">Selfie Camera</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.selfieCamera}</td>
+                      <td className="">{secondPhone.selfieCamera}</td>
                     </tr>
                     <tr>
                       <td className="option">Sound</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.sound}</td>
+                      <td className="">{secondPhone.sound}</td>
                     </tr>
                     <tr>
                       <td className="option">OS</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.os}</td>
+                      <td className="">{secondPhone.os}</td>
                     </tr>
                     <tr>
                       <td className="option">Battery</td>
-                      <td className=""></td>
-                      <td className=""></td>
+                      <td className="">{firstPhone.battery}</td>
+                      <td className="">{secondPhone.battery}</td>
                     </tr>
                     </tbody>
                   </table>

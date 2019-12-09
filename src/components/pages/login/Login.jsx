@@ -18,22 +18,23 @@ export default class Login extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        // fetch(`http://localhost/api/administrator/find_administrator.php`, {
-        //     method: 'POST',
-        //     body: JSON.stringify({username:this.state.username, password: this.state.password})
 
+        //POST method
         const response = await fetch('http://localhost/api/administrator/find_administrator.php', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({username: this.state.username, password: this.state.password}),
-        })
-        const data = await response.json()
+        });
+
+        //GET method
+        //const response =  await fetch(`http://localhost/api/administrator/find_administrator.php?username=${this.state.username}&password=${this.state.password}`);
+
+        const data = await response.json();
         if (data.length !== 0) {
             sessionStorage.setItem('userData', JSON.stringify(data));
             this.setState({
                 redirect: true
             });
-            console.log(data)
         } else {
             this.setState({error: 'Incorrect username or password!'})
         }

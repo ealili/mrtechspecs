@@ -45,10 +45,14 @@ class Comparator extends Component {
   }
 
   getFirstPhone () {
+    if (this.refs.firstPhone.value === '')
+      return
     this.setState({ firstPhone: this.state.phones.filter(phone => phone.id === this.refs.firstPhone.value) })
   }
 
   getSecondPhone () {
+    if (this.refs.secondPhone.value === '')
+      return
     this.setState({ secondPhone: this.state.phones.filter(phone => phone.id === this.refs.secondPhone.value) })
   }
 
@@ -73,24 +77,30 @@ class Comparator extends Component {
                     <tr>
                       <th className="w-25">
                       </th>
-                      <th><select ref='firstPhone' onChange={this.getFirstPhone.bind(this)}>
-                        {
-                          this.state.phones.map(phone => {
-                            return <option value={phone.id} name={phone.id}
-                                           key={phone.id}
-                                           required>{phone.name}</option>
-                          })
-                        }
-                      </select></th>
-                      <th><select ref='secondPhone' onChange={this.getSecondPhone.bind(this)}>
-                        {
-                          this.state.phones.map(phone => {
-                            return <option value={phone.id} name={phone.id}
-                                           key={phone.id}
-                                           required>{phone.name}</option>
-                          })
-                        }
-                      </select></th>
+                      <th>
+                        <select ref='firstPhone' onChange={this.getFirstPhone.bind(this)}>
+                          <option value="" selected disabled hidden>Choose here</option>
+                          {
+                            this.state.phones.map(phone => {
+                              return <option value={phone.id} name={phone.id}
+                                             key={phone.id}
+                                             required>{phone.name}</option>
+                            })
+                          }
+                        </select>
+                      </th>
+                      <th>
+                        <select ref='secondPhone' onChange={this.getSecondPhone.bind(this)}>
+                          <option value="" selected disabled hidden>Choose here</option>
+                          {
+                            this.state.phones.map(phone => {
+                              return <option value={phone.id} name={phone.id}
+                                             key={phone.id}
+                                             required>{phone.name}</option>
+                            })
+                          }
+                        </select>
+                      </th>
                     </tr>
                     </thead>
                     <tbody>

@@ -70,7 +70,7 @@ export default class extends Component {
               <label htmlFor="maname" className="grey-text font-weight-light">
                 Manufacturer Name
               </label><br/>
-              <select name="Manufacturer">
+              <select name="Manufacturer" name='mname'>
                 {
                   this.state.manufacturers.map(m => {
                     return <option value={m.mname} name='mname' key={m.mname}

@@ -108,14 +108,6 @@ class Comparator extends Component {
                               );
                             })}
                           </select>
-                          <br />
-                          {firstPhone.imgSource !== "" ? (
-                            <img
-                              style={imgStyle}
-                              alt={firstPhone.name}
-                              src={firstPhone.imgSource}
-                            />
-                          ) : null}
                         </th>
                         <th>
                           <select
@@ -139,17 +131,31 @@ class Comparator extends Component {
                             })}
                           </select>
                           <br />
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td></td>
+                        <td>
                           {firstPhone.imgSource !== "" ? (
+                            <img
+                              style={imgStyle}
+                              alt={firstPhone.name}
+                              src={firstPhone.imgSource}
+                            />
+                          ) : null}
+                        </td>
+                        <td>
+                          {secondPhone.imgSource !== "" ? (
                             <img
                               style={imgStyle}
                               alt={secondPhone.name}
                               src={secondPhone.imgSource}
                             />
                           ) : null}
-                        </th>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
                       <tr>
                         <td className="w-25 option">Phone Name</td>
                         <td className="">{firstPhone.name}</td>

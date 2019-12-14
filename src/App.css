@@ -15,12 +15,17 @@ body {
 
 .carousel-item {
   height: 70vh;
-  min-height: 300px;
+  min-height: 400px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.carouselItem {
+  text-align: left;
+  margin-left: 5%;
 }
 
 h2 {

@@ -31,14 +31,14 @@ class Admin extends Component {
         <hr />
         <div className="row text-center text-lg-left">
           <div className="col-lg-3 col-md-4 col-xs-6">
-            <Link to="/admin/addphone" className="nav-link">
+            <Link to="/admin/add-phone" className="nav-link">
               <i class="fa fa-plus-circle" style={this.iconStyles}>
                 <div style={{ fontSize: "25px" }}>Add Phone</div>
               </i>
             </Link>
           </div>
           <div className="col-lg-3 col-md-4 col-xs-6">
-            <Link to="/modify" className="nav-link">
+            <Link to="/admin/edit-phone" className="nav-link">
               <i class="fa fa-edit" style={this.iconStyles}>
                 <div style={{ fontSize: "25px" }}>Edit Phone</div>
               </i>

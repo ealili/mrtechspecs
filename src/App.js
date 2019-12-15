@@ -7,10 +7,9 @@ import Header from './components/header/Header'
 import PhonesRoutes from './components/PhonesRoutes'
 import About from './components/pages/about/About'
 import Footer from './components/footer/Footer'
-import AddPhone from './components/admin/AddPhone'
-import Admin from './components/admin/Admin'
 import Login from './components/pages/login/Login'
 import Comparator from './components/pages/comparator/Comparator'
+import AdminRoutes from "./components/admin/AdminRoutes";
 
 class App extends Component {
   render () {
@@ -23,10 +22,9 @@ class App extends Component {
               <Route exact path="/" component={Home}/>
               <Route path="/phones" component={PhonesRoutes}/>
               <Route path="/about" component={About}/>
-              <Route path="/admin/addphone" component={AddPhone}/>
-              <Route path="/admin" component={Admin}/>
-              <Route path="/login" component={Login}/>
               <Route path="/compare" component={Comparator}/>
+              <Route path="/admin" component={AdminRoutes}/>
+              <Route path="/login" component={Login}/>
               <Route component={NotFound}/>
             </Switch>
           </section>

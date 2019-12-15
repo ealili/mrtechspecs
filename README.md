@@ -12,6 +12,11 @@
 git clone https://github.com/ealili/mrtechspecs.git
 ```
 
+### cd to the project
+```bash
+cd mrtechspecs
+```
+
 ### Install dependencies using npm
 ```bash 
 npm install
@@ -20,11 +25,6 @@ npm install
 ### or yarn
 ```bash 
 yarn install
-```
-
-### Cd to the project
-```bash
-cd mrtechspecs
 ```
 
 ### Start the project using npm

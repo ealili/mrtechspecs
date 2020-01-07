@@ -59,9 +59,8 @@ export default class Login extends Component {
                                 </div>
                             </Tilt>
 
-
                             <form className="login100-form" onSubmit={this.handleSubmit.bind(this)}>
-                                <span className="login100-form-title">Member Login</span>
+                                <span className="login100-form-title">Admin Login</span>
 
                                 <div className="wrap-input100">
                                     <input

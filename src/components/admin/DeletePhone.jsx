@@ -4,13 +4,13 @@ import DeleteThumbnail from "./DeleteThumbnail";
 export default class DeletePhone extends Component {
   state = {
     loading: true,
-    latestPhones: []
+    allPhones: []
   };
   async componentDidMount() {
     const url = "http://localhost/api/phone/get_all_phones.php";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ latestPhones: data, loading: false });
+    this.setState({ allPhones: data, loading: false });
   }
 
   render() {
@@ -26,8 +26,8 @@ export default class DeletePhone extends Component {
               </h3>
               <div className="container">
                 <div className="row text-center text-lg-left">
-                  {this.state.latestPhones.map(latestPhone => (
-                    <DeleteThumbnail key={latestPhone.id} phone={latestPhone} />
+                  {this.state.allPhones.map(phone => (
+                    <DeleteThumbnail key={phone.id} phone={phone} />
                   ))}
                 </div>
               </div>

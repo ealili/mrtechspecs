@@ -44,6 +44,10 @@ export default class extends Component {
       return <div className="lds-hourglass"></div>
     return (
       <div className="container">
+        <div>
+          <button type="button" className="btn btn-secondary" onClick="window.history.go(-1); return false;">Back</button>
+          <input action="action" type="button" onClick="history.go(-1); return false;" value="Back"/>
+        </div>
         <div className="card mx-xl-5">
           <div className="card-body">
             <p className="h4 text-center py-4">Add a new phone</p>

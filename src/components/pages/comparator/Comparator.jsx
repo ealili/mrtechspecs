@@ -7,7 +7,7 @@ class Comparator extends Component {
     firstPhone: [
       {
         name: "",
-        prodcutionYear: "",
+        productionYear: "",
         mname: "",
         displaySize: "",
         displayType: "",
@@ -25,7 +25,7 @@ class Comparator extends Component {
     secondPhone: [
       {
         name: "",
-        prodcutionYear: "",
+        productionYear: "",
         mname: "",
         displaySize: "",
         displayType: "",
@@ -71,6 +71,7 @@ class Comparator extends Component {
   render() {
     if (this.state.loading) return <div>Loading...</div>;
     const firstPhone = this.state.firstPhone[0];
+    console.log(firstPhone);
     const secondPhone = this.state.secondPhone[0];
     return (
       <div className="container">

@@ -24,6 +24,24 @@ export default class EditPhone extends Component {
         imgSource: ""
       }
     ],
+    phoneDefault: [
+      {
+        name: "",
+        productionYear: "",
+        mname: "",
+        displaySize: "",
+        displayType: "",
+        displayResolution: "",
+        weight: "",
+        battery: "",
+        mainCamera: "",
+        selfieCamera: "",
+        os: "",
+        technology: "",
+        sound: "",
+        imgSource: ""
+      }
+    ],
     exists: false,
     buttonDisabled: false,
     btnStyle: "btn btn-md btn-success"
@@ -48,11 +66,15 @@ export default class EditPhone extends Component {
         phone => phone.id === this.refs.phone.value
       )
     });
+    console.log(this.state.phone[0]);
   }
 
   updateManufacturer() {
     if (this.refs.manufacturer.value === "") return;
-    this.setState({ mname: this.refs.manufacturer.value });
+    this.setState({ mname: this.refs.manufacturer.value});
+    this.setState({ phone: this.state.phoneDefault});
+    this.refs.phone.value="";
+    console.log(this.state.phone[0]);
   }
 
   render() {
@@ -113,8 +135,9 @@ export default class EditPhone extends Component {
                 name="Phone"
                 ref="phone"
                 onChange={this.getPhone.bind(this)}
+                onClick={this.getPhone.bind(this)}
               >
-                <option value="" selected disabled hidden>
+                <option value="" selected disabled >
                   Choose here
                 </option>
                 {this.state.phones.map(phone => {
@@ -161,6 +184,7 @@ export default class EditPhone extends Component {
                 id="displayRes"
                 name="displayResolution"
                 value={phone.displayResolution}
+                placeholder={phone.displayResolution}
                 required
               />
               <br />
@@ -174,7 +198,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="displaySize"
                 name="displaySize"
-                placeholder="Display Size"
+                value={phone.displaySize}
+                placeholder={phone.displaySize}
                 required
               />
               <br />
@@ -188,7 +213,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="selfieCamera"
                 name="selfieCamera"
-                placeholder="Selfie Camera"
+                value={phone.selfieCamera}
+                placeholder={phone.selfieCamera}
                 required
               />
               <br />
@@ -202,7 +228,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="mainCamera"
                 name="mainCamera"
-                placeholder="Main Camera"
+                value={phone.mainCamera}
+                placeholder={phone.mainCamera}
                 required
               />
               <br />
@@ -214,7 +241,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="tech"
                 name="technology"
-                placeholder="technology"
+                value={phone.technology}
+                placeholder={phone.technology}
                 required
               />
               <br />
@@ -225,7 +253,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="weight"
                 name="weight"
-                placeholder="weight"
+                value={phone.weight}
+                placeholder={phone.weight}
                 required
               />
               <br />
@@ -236,7 +265,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="sound"
                 name="sound"
-                placeholder="sound"
+                value={phone.sound}
+                placeholder={phone.sound}
                 required
               />
               <br />
@@ -247,11 +277,12 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="os"
                 name="os"
-                placeholder="os"
+                value={phone.os}
+                placeholder={phone.os}
                 required
               />
               <br />
-              <label htmlFor="os" className="grey-text font-weight-light">
+              <label htmlFor="productionYear" className="grey-text font-weight-light">
                 Production Year
               </label>
               <input
@@ -261,7 +292,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="productionYear"
                 name="productionYear"
-                placeholder="productionYear"
+                value={phone.productionYear}
+                placeholder={phone.productionYear}
                 required
               />
               <br />
@@ -272,7 +304,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="battery"
                 name="battery"
-                placeholder="battery"
+                value={phone.battery}
+                placeholder={phone.battery}
                 required
               />
               <br />
@@ -283,7 +316,8 @@ export default class EditPhone extends Component {
                 className="form-control"
                 id="imgURL"
                 name="imgSource"
-                placeholder="imgURL"
+                value={phone.imgSource}
+                placeholder={phone.imgSource}
                 required
               />
               <br />

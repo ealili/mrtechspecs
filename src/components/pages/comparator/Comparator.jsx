@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
+import Redirect from "react-router-dom/Redirect";
 
 class Comparator extends Component {
   state = {
@@ -44,17 +45,17 @@ class Comparator extends Component {
 
   componentDidMount() {
     fetch(`http://localhost/api/phone/get_all_phones.php`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ phones: data, loading: false });
-      });
+        .then(response => response.json())
+        .then(data => {
+          this.setState({phones: data, loading: false});
+        });
   }
 
   getFirstPhone() {
     if (this.refs.firstPhone.value === "") return;
     this.setState({
       firstPhone: this.state.phones.filter(
-        phone => phone.id === this.refs.firstPhone.value
+          phone => phone.id === this.refs.firstPhone.value
       )
     });
   }
@@ -63,97 +64,99 @@ class Comparator extends Component {
     if (this.refs.secondPhone.value === "") return;
     this.setState({
       secondPhone: this.state.phones.filter(
-        phone => phone.id === this.refs.secondPhone.value
+          phone => phone.id === this.refs.secondPhone.value
       )
     });
   }
 
   render() {
     if (this.state.loading) return <div>Loading...</div>;
+    if (localStorage.getItem('user') == null) {
+      return (<Redirect to={'/login'}/>)
+    }
     const firstPhone = this.state.firstPhone[0];
-    console.log(firstPhone);
     const secondPhone = this.state.secondPhone[0];
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-10 my-4 mx-auto">
-            <br />
-            <hr />
-            <h5 className="text-center">Select two phones to compare</h5>
-            <hr />
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="table-responsive">
-                  <table className="table table-striped table-hover">
-                    <thead className="thead-inverse">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-10 my-4 mx-auto">
+              <br/>
+              <hr/>
+              <h5 className="text-center">Select two phones to compare</h5>
+              <hr/>
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="table-responsive">
+                    <table className="table table-striped table-hover">
+                      <thead className="thead-inverse">
                       <tr>
                         <th className="w-25"></th>
                         <th>
                           <select
-                            ref="firstPhone"
-                            onChange={this.getFirstPhone.bind(this)}
+                              ref="firstPhone"
+                              onChange={this.getFirstPhone.bind(this)}
                           >
                             <option value="" selected disabled hidden>
                               Choose here
                             </option>
                             {this.state.phones.map(phone => {
                               return (
-                                <option
-                                  value={phone.id}
-                                  name={phone.id}
-                                  key={phone.id}
-                                  required
-                                >
-                                  {phone.name}
-                                </option>
+                                  <option
+                                      value={phone.id}
+                                      name={phone.id}
+                                      key={phone.id}
+                                      required
+                                  >
+                                    {phone.name}
+                                  </option>
                               );
                             })}
                           </select>
                         </th>
                         <th>
                           <select
-                            ref="secondPhone"
-                            onChange={this.getSecondPhone.bind(this)}
+                              ref="secondPhone"
+                              onChange={this.getSecondPhone.bind(this)}
                           >
                             <option value="" selected disabled hidden>
                               Choose here
                             </option>
                             {this.state.phones.map(phone => {
                               return (
-                                <option
-                                  value={phone.id}
-                                  name={phone.id}
-                                  key={phone.id}
-                                  required
-                                >
-                                  {phone.name}
-                                </option>
+                                  <option
+                                      value={phone.id}
+                                      name={phone.id}
+                                      key={phone.id}
+                                      required
+                                  >
+                                    {phone.name}
+                                  </option>
                               );
                             })}
                           </select>
-                          <br />
+                          <br/>
                         </th>
                       </tr>
-                    </thead>
-                    <tbody>
+                      </thead>
+                      <tbody>
                       <tr>
                         <td></td>
                         <td>
                           {firstPhone.imgSource !== "" ? (
-                            <img
-                              style={imgStyle}
-                              alt={firstPhone.name}
-                              src={firstPhone.imgSource}
-                            />
+                              <img
+                                  style={imgStyle}
+                                  alt={firstPhone.name}
+                                  src={firstPhone.imgSource}
+                              />
                           ) : null}
                         </td>
                         <td>
                           {secondPhone.imgSource !== "" ? (
-                            <img
-                              style={imgStyle}
-                              alt={secondPhone.name}
-                              src={secondPhone.imgSource}
-                            />
+                              <img
+                                  style={imgStyle}
+                                  alt={secondPhone.name}
+                                  src={secondPhone.imgSource}
+                              />
                           ) : null}
                         </td>
                       </tr>
@@ -222,14 +225,14 @@ class Comparator extends Component {
                         <td className="">{firstPhone.battery}</td>
                         <td className="">{secondPhone.battery}</td>
                       </tr>
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     );
   }
 }

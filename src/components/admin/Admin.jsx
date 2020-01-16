@@ -3,23 +3,20 @@ import { Link, Redirect } from "react-router-dom";
 
 class Admin extends Component {
   state = {
-    redirect: false,
-    user: {}
+    redirect: true,
+    user: {},
   };
 
   componentWillMount() {
-    if (sessionStorage.getItem("userData")) {
-      console.log(sessionStorage.getItem("userData"));
-    } else {
-      this.setState({ redirect: true });
+   if(localStorage.getItem('user')){
+      this.setState({redirect: false});
     }
   }
 
   logout() {
-    sessionStorage.setItem("userData", "");
-    sessionStorage.clear();
+    localStorage.setItem("user", "");
+    localStorage.clear();
     this.setState({ redirect: true });
-    console.log(sessionStorage.getItem("userData"));
   }
 
   render() {

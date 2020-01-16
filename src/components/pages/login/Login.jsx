@@ -56,6 +56,7 @@ export default class Login extends Component {
       return <Redirect to={"/admin"} />;
     }
 
+<<<<<<< HEAD
     if (localStorage.getItem("userData")) {
       return <Redirect to={"/admin"} />;
     }
@@ -75,6 +76,10 @@ export default class Login extends Component {
                 onSubmit={this.handleSubmit.bind(this)}
               >
                 <span className="login100-form-title">Member Login</span>
+=======
+                            <form className="login100-form" onSubmit={this.handleSubmit.bind(this)}>
+                                <span className="login100-form-title">Admin Login</span>
+>>>>>>> master
 
                 <div className="wrap-input100">
                   <input

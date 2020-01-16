@@ -45,8 +45,7 @@ class Admin extends Component {
             </Link>
           </div>
           <div className="col-lg-3 col-md-4 col-xs-6">
-            <a
-              href=""
+            <button
               onClick={this.logout.bind(this)}
               className="logout nav-link"
             >
@@ -55,7 +54,7 @@ class Admin extends Component {
                   Sign Out
                 </div>
               </i>
-            </a>
+            </button>
           </div>
         </div>
       </div>

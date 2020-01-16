@@ -8,6 +8,7 @@ export default class EditPhone extends Component {
     mname: "",
     phone: [
       {
+        id: "",
         name: "",
         productionYear: "",
         mname: "",
@@ -26,6 +27,7 @@ export default class EditPhone extends Component {
     ],
     phoneDefault: [
       {
+        id:"",
         name: "",
         productionYear: "",
         mname: "",
@@ -44,8 +46,9 @@ export default class EditPhone extends Component {
     ],
     exists: false,
     buttonDisabled: false,
-    btnStyle: "btn btn-md btn-success"
+    btnStyle: "btn btn-md btn-success",
   };
+
 
   async componentDidMount() {
     let url = `http://localhost/api/manufacturer/get_all_manufacturers.php`;
@@ -56,8 +59,10 @@ export default class EditPhone extends Component {
     url = `http://localhost/api/phone/get_all_phones.php`;
     response = await fetch(url);
     data = await response.json();
-    this.setState({ phones: data, loading: false });
+    this.setState({ phones: data});
   }
+
+
 
   getPhone() {
     if (this.refs.phone.value === "") return;
@@ -77,6 +82,11 @@ export default class EditPhone extends Component {
     console.log(this.state.phone[0]);
   }
 
+  handleInputChange(e) {
+    this.setState({phone: [{...this.state.phone[0], [e.target.name]: e.target.value}]})
+    console.log(this.state.phone)
+}
+
   render() {
     if (this.state.loading) return <div className="lds-hourglass"></div>;
     const mname = this.state.mname;
@@ -87,16 +97,10 @@ export default class EditPhone extends Component {
           <button
             type="button"
             className="btn btn-secondary"
-            onClick="window.history.go(-1); return false;"
+            onClick={() => window.history.back()}
           >
             Back
           </button>
-          <input
-            action="action"
-            type="button"
-            onClick="history.go(-1); return false;"
-            value="Back"
-          />
         </div>
         <div className="card mx-xl-5">
           <div className="card-body">
@@ -110,7 +114,7 @@ export default class EditPhone extends Component {
               </label>
               <br />
               <select
-                name="Manufacturer"
+                name="mname"
                 ref="manufacturer"
                 onChange={this.updateManufacturer.bind(this)}
               >
@@ -132,10 +136,9 @@ export default class EditPhone extends Component {
               </label>
               <br />
               <select
-                name="Phone"
+                name="phone"
                 ref="phone"
                 onChange={this.getPhone.bind(this)}
-                onClick={this.getPhone.bind(this)}
               >
                 <option value="" selected disabled >
                   Choose here
@@ -145,7 +148,6 @@ export default class EditPhone extends Component {
                     return (
                       <option
                         value={phone.id}
-                        name={phone.id}
                         key={phone.id}
                         required
                       >
@@ -158,18 +160,20 @@ export default class EditPhone extends Component {
               </select>
               <br />
               <br />
+              <input type="hidden" name="id" value={phone.id}/>
               <label
                 htmlFor="displayType"
                 className="grey-text font-weight-light"
               >
-                Display Type
               </label>
+              Display Type
               <input
                 className="form-control"
                 id="displayType"
                 name="displayType"
+                type="text"
                 value={phone.displayType}
-                placeholder={phone.displayType}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -184,7 +188,7 @@ export default class EditPhone extends Component {
                 id="displayRes"
                 name="displayResolution"
                 value={phone.displayResolution}
-                placeholder={phone.displayResolution}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -200,6 +204,7 @@ export default class EditPhone extends Component {
                 name="displaySize"
                 value={phone.displaySize}
                 placeholder={phone.displaySize}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -214,7 +219,7 @@ export default class EditPhone extends Component {
                 id="selfieCamera"
                 name="selfieCamera"
                 value={phone.selfieCamera}
-                placeholder={phone.selfieCamera}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -229,7 +234,7 @@ export default class EditPhone extends Component {
                 id="mainCamera"
                 name="mainCamera"
                 value={phone.mainCamera}
-                placeholder={phone.mainCamera}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -242,7 +247,7 @@ export default class EditPhone extends Component {
                 id="tech"
                 name="technology"
                 value={phone.technology}
-                placeholder={phone.technology}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -254,7 +259,7 @@ export default class EditPhone extends Component {
                 id="weight"
                 name="weight"
                 value={phone.weight}
-                placeholder={phone.weight}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -266,7 +271,7 @@ export default class EditPhone extends Component {
                 id="sound"
                 name="sound"
                 value={phone.sound}
-                placeholder={phone.sound}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -278,7 +283,7 @@ export default class EditPhone extends Component {
                 id="os"
                 name="os"
                 value={phone.os}
-                placeholder={phone.os}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -293,7 +298,7 @@ export default class EditPhone extends Component {
                 id="productionYear"
                 name="productionYear"
                 value={phone.productionYear}
-                placeholder={phone.productionYear}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -305,7 +310,7 @@ export default class EditPhone extends Component {
                 id="battery"
                 name="battery"
                 value={phone.battery}
-                placeholder={phone.battery}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -317,7 +322,7 @@ export default class EditPhone extends Component {
                 id="imgURL"
                 name="imgSource"
                 value={phone.imgSource}
-                placeholder={phone.imgSource}
+                onChange={this.handleInputChange.bind(this)}
                 required
               />
               <br />
@@ -327,7 +332,7 @@ export default class EditPhone extends Component {
                   className={this.state.btnStyle}
                   disabled={this.state.buttonDisabled}
                 >
-                  Add phone to database{" "}
+                  Edit Phone{" "}
                 </button>
               </div>
             </form>

@@ -45,8 +45,13 @@ export default class extends Component {
     return (
       <div className="container">
         <div>
-          <button type="button" className="btn btn-secondary" onClick="window.history.go(-1); return false;">Back</button>
-          <input action="action" type="button" onClick="history.go(-1); return false;" value="Back"/>
+          <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => window.history.back()}
+          >
+            Back
+          </button>
         </div>
         <div className="card mx-xl-5">
           <div className="card-body">
@@ -71,10 +76,11 @@ export default class extends Component {
                 required
               />
               <br/>
-              <label htmlFor="maname" className="grey-text font-weight-light">
+              <label htmlFor="mname" className="grey-text font-weight-light">
                 Manufacturer Name
-              </label><br/>
-              <select name="Manufacturer" name='mname'>
+              </label>
+              <br/>
+              <select name='mname'>
                 {
                   this.state.manufacturers.map(m => {
                     return <option value={m.mname} name='mname' key={m.mname}

@@ -26,7 +26,7 @@ class Admin extends Component {
     return (
       <div className="container">
         <hr />
-        <div className="row text-center text-lg-left">
+        <div className="row text-center text-lg-center">
           <div className="col-lg-3 col-md-4 col-xs-6">
             <Link to="/admin/add-phone" className="nav-link">
               <i class="fa fa-plus-circle" style={this.iconStyles}>
@@ -38,6 +38,13 @@ class Admin extends Component {
             <Link to="/admin/edit-phone" className="nav-link">
               <i class="fa fa-edit" style={this.iconStyles}>
                 <div style={{ fontSize: "25px" }}>Edit Phone</div>
+              </i>
+            </Link>
+          </div>
+          <div className="col-lg-3 col-md-4 col-xs-6">
+            <Link to="/admin/delete-phone" className="nav-link">
+              <i className="fa fa-trash" style={this.iconStyles}>
+                <div style={{fontSize: "25px"}}>Delete Phone</div>
               </i>
             </Link>
           </div>

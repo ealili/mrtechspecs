@@ -71,9 +71,6 @@ class Comparator extends Component {
 
   render() {
     if (this.state.loading) return <div>Loading...</div>;
-    if (localStorage.getItem('user') == null) {
-      return (<Redirect to={'/login'}/>)
-    }
     const firstPhone = this.state.firstPhone[0];
     const secondPhone = this.state.secondPhone[0];
     return (

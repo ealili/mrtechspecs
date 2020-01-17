@@ -12,6 +12,7 @@ import Comparator from './components/pages/comparator/Comparator'
 import AdminRoutes from "./components/admin/AdminRoutes";
 
 class App extends Component {
+
   render () {
     return (
       <Router>
@@ -35,4 +36,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;

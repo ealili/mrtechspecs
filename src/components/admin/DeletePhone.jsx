@@ -20,6 +20,11 @@ export default class DeletePhone extends Component {
       return (
         <section className="py-5">
           <div className="container">
+            <div>
+              <button type="button" className="btn btn-secondary" onClick={() => window.history.back()} >
+                Back
+              </button>
+            </div>
             <div className="row text-center text-lg-left">
               <h3 className="my-4 text-center text-lg-left">
                 Showing All Phones

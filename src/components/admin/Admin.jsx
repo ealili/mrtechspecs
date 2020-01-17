@@ -60,6 +60,20 @@ class Admin extends Component {
               </i>
             </button>
           </div>
+          <div className="col-lg-3 col-md-4 col-xs-6">
+            <Link to="/admin/remove-administrator" className="nav-link">
+              <i className="fa fa-user" style={this.iconStyles}>
+                <div style={{fontSize: "25px"}}>Remove Admin</div>
+              </i>
+            </Link>
+          </div>
+          <div className="col-lg-3 col-md-4 col-xs-6">
+            <Link to="/admin/add-administrator" className="nav-link">
+              <i className="fa fa-user-plus" style={this.iconStyles}>
+                <div style={{fontSize: "25px"}}>Add Admin</div>
+              </i>
+            </Link>
+          </div>
         </div>
       </div>
     );

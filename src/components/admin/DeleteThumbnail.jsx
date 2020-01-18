@@ -11,7 +11,7 @@ export default class DeleteThumbnail extends Component {
                     {name}
                 </p>
                 <p style={{textAlign: "center"}}>
-                    <form action='http://localhost/api/phone/delete_phone.php?$' method="POST">
+                    <form action='http://localhost/api/phone/delete_phone.php?' method="POST">
                         <input id="id" name="id" value={this.props.phone.id} hidden/>
                             <button type="submit" className="btn btn-danger btn-sm" onClick={this.handleDelete}
                                     >

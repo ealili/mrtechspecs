@@ -40,20 +40,20 @@ export default class RemoveAdmin extends Component {
                         <div className="card-body">
                             <p className="h4 text-center py-4">Delete Admin</p>
                             <form
-                                action="http://localhost/api/administrator/remove_administrators.php"
-                                method="GET"
+                                action="http://localhost/api/administrator/remove_administrator.php"
+                                method="POST"
                             >
                                 <label htmlFor="user" className="grey-text font-weight-light">
                                     Admin
                                 </label>
                                 <br/>
-                                <select name="user" ref="user" >
+                                <select name="username" ref="user" >
                                     <option value="" selected disabled hidden>
                                         Choose here
                                     </option>
                                     {this.state.users.map(m => {
                                         return (
-                                            <option value={m.username} name="user" key={m.username} required>
+                                            <option value={m.username} name="username" key={m.username} required>
                                                 {m.name}, {m.username}
                                             </option>
                                         );

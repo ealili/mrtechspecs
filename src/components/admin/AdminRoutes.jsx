@@ -17,6 +17,7 @@ class AdminRoutes extends Component {
                 <Route path="/admin/add-phone" component={AddPhone}/>
                 <Route path="/admin/edit-phone" component={EditPhone}/>
                 <Route path="/admin/delete-phone" component={DeletePhone}/>
+                <Route path="/admin/delete-phone" component={DeletePhone}/>
             </Switch>
         );
     }

@@ -4,56 +4,39 @@ import Redirect from "react-router-dom/Redirect";
 class AddAdmin extends Component {
     state = {
         loading: true,
-        users: [
-            {
-                name: "",
-                username: "",
-                password: ""
-            }
-        ],
-        user: [
-            {
-                name: "",
-                username: "",
-                password: ""
-            }
-        ],
+        users: '',
+        exists: false,
         buttonDisabled: false,
         btnStyle: "btn btn-md btn-success",
     };
 
     handleChange(e) {
-        let checkUser = e.target.value
+        let checkUser = e.target.value;
+
         fetch(`http://localhost/api/administrator/get_all_administrators.php`)
             .then(response => response.json())
             .then(data => {
-                this.setState({users: data})
-            })
+                this.setState({users: data});
+            });
 
-        this.setState({
-            user: this.state.users.filter(
-                user =>  user.username === checkUser
-            )
-        });
-
-        console.log(checkUser);
-        console.log(this.state.user);
-
-        if(this.state.user.username != undefined) {
-            if (this.state.user[0].username === checkUser) {
+        for(let i=0; i<this.state.users.length; i++){
+            if(this.state.users[i].username===checkUser)
+            {
                 this.setState({
                     exists: true,
                     buttonDisabled: true,
                     btnStyle: 'btn btn-md btn-secondary'
+                });
+                break;
+            }
+            else
+            {
+                this.setState({
+                    exists: false,
+                    buttonDisabled: false,
+                    btnStyle: 'btn btn-md btn-success'
                 })
             }
-        }
-         else {
-            this.setState({
-                exists: false,
-                buttonDisabled: false,
-                btnStyle: 'btn btn-md btn-success'
-            })
         }
     }
 
@@ -61,7 +44,7 @@ class AddAdmin extends Component {
         if (localStorage.getItem('user') == null) {
             return (<Redirect to={'/login'}/>)
         }
-        const user = this.state.user[0];
+
         return (
             <div className="container">
                 <div>
@@ -89,7 +72,6 @@ class AddAdmin extends Component {
                             <input
                                 type="text"
                                 className="form-control"
-                                id="username"
                                 name="username"
                                 placeholder="Username"
                                 onChange={this.handleChange.bind(this)}
@@ -104,7 +86,6 @@ class AddAdmin extends Component {
                             </label>
                             <input
                                 className="form-control"
-                                id="displayType"
                                 name="name"
                                 placeholder="Name"
                                 required
@@ -120,7 +101,6 @@ class AddAdmin extends Component {
                             <input
                                 className="form-control"
                                 //type="password"
-                                id="password"
                                 name="password"
                                 placeholder="Password"
                                 required

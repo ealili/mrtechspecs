@@ -3,23 +3,20 @@ import { Link, Redirect } from "react-router-dom";
 
 class Admin extends Component {
   state = {
-    redirect: false,
-    user: {}
+    redirect: true,
+    user: {},
   };
 
   componentWillMount() {
-    if (sessionStorage.getItem("userData")) {
-      console.log(sessionStorage.getItem("userData"));
-    } else {
-      this.setState({ redirect: true });
+   if(localStorage.getItem('user')){
+      this.setState({redirect: false});
     }
   }
 
   logout() {
-    sessionStorage.setItem("userData", "");
-    sessionStorage.clear();
+    localStorage.setItem("user", "");
+    localStorage.clear();
     this.setState({ redirect: true });
-    console.log(sessionStorage.getItem("userData"));
   }
 
   render() {
@@ -29,7 +26,7 @@ class Admin extends Component {
     return (
       <div className="container">
         <hr />
-        <div className="row text-center text-lg-left">
+        <div className="row text-center text-lg-center">
           <div className="col-lg-3 col-md-4 col-xs-6">
             <Link to="/admin/add-phone" className="nav-link">
               <i class="fa fa-plus-circle" style={this.iconStyles}>
@@ -45,6 +42,13 @@ class Admin extends Component {
             </Link>
           </div>
           <div className="col-lg-3 col-md-4 col-xs-6">
+            <Link to="/admin/delete-phone" className="nav-link">
+              <i className="fa fa-trash" style={this.iconStyles}>
+                <div style={{fontSize: "25px"}}>Delete Phone</div>
+              </i>
+            </Link>
+          </div>
+          <div className="col-lg-3 col-md-4 col-xs-6">
             <button
               onClick={this.logout.bind(this)}
               className="logout nav-link"
@@ -55,6 +59,20 @@ class Admin extends Component {
                 </div>
               </i>
             </button>
+          </div>
+          <div className="col-lg-3 col-md-4 col-xs-6">
+            <Link to="/admin/remove-administrator" className="nav-link">
+              <i className="fa fa-user" style={this.iconStyles}>
+                <div style={{fontSize: "25px"}}>Remove Admin</div>
+              </i>
+            </Link>
+          </div>
+          <div className="col-lg-3 col-md-4 col-xs-6">
+            <Link to="/admin/add-administrator" className="nav-link">
+              <i className="fa fa-user-plus" style={this.iconStyles}>
+                <div style={{fontSize: "25px"}}>Add Admin</div>
+              </i>
+            </Link>
           </div>
         </div>
       </div>

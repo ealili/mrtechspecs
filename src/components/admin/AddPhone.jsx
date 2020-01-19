@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Redirect from "react-router-dom/Redirect";
 
 export default class extends Component {
 
@@ -42,6 +43,9 @@ export default class extends Component {
   render () {
     if (this.state.loading)
       return <div className="lds-hourglass"></div>
+    if (localStorage.getItem('user')==null) {
+      return (<Redirect to={'/login'}/>)
+    }
     return (
       <div className="container">
         <div>

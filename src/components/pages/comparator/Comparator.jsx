@@ -1,10 +1,12 @@
 import React, {Component} from "react";
-import Redirect from "react-router-dom/Redirect";
 
 class Comparator extends Component {
   state = {
     loading: true,
     phones: [],
+    manufacturers: [],
+    firstManufacturer: "",
+    secondManufacturer: "",
     firstPhone: [
       {
         name: "",
@@ -40,7 +42,26 @@ class Comparator extends Component {
         sound: "",
         imgSource: ""
       }
-    ]
+    ],
+    phoneDefault: [
+      {
+        id: "",
+        name: "",
+        productionYear: "",
+        mname: "",
+        displaySize: "",
+        displayType: "",
+        displayResolution: "",
+        weight: "",
+        battery: "",
+        mainCamera: "",
+        selfieCamera: "",
+        os: "",
+        technology: "",
+        sound: "",
+        imgSource: ""
+      }
+    ],
   };
 
   componentDidMount() {
@@ -48,6 +69,12 @@ class Comparator extends Component {
         .then(response => response.json())
         .then(data => {
           this.setState({phones: data, loading: false});
+        });
+
+    fetch(`http://localhost/api/manufacturer/get_all_manufacturers.php`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({manufacturers: data, loading: false});
         });
   }
 
@@ -69,10 +96,26 @@ class Comparator extends Component {
     });
   }
 
+  updateFManufacturer() {
+    if (this.refs.firstManufacturer.value === "") return;
+    this.setState({firstManufacturer: this.refs.firstManufacturer.value});
+    this.setState({firstPhone: this.state.phoneDefault});
+    this.refs.firstPhone.value = "";
+  }
+
+  updateSManufacturer() {
+    if (this.refs.secondManufacturer.value === "") return;
+    this.setState({secondManufacturer: this.refs.secondManufacturer.value});
+    this.setState({secondPhone: this.state.phoneDefault});
+    this.refs.secondPhone.value = "";
+  }
+
   render() {
     if (this.state.loading) return <div>Loading...</div>;
     const firstPhone = this.state.firstPhone[0];
     const secondPhone = this.state.secondPhone[0];
+    const firstManufacturer = this.state.firstManufacturer;
+    const secondManufacturer = this.state.secondManufacturer;
     return (
         <div className="container">
           <div className="row">
@@ -87,38 +130,79 @@ class Comparator extends Component {
                     <table className="table table-striped table-hover">
                       <thead className="thead-inverse">
                       <tr>
-                        <th className="w-25"></th>
-                        <th>
+                        <td className="w-25 option">Manufacturer Name</td>
+                        <td>
+                          <select name='fmname'
+                                  ref="firstManufacturer"
+                                  onChange={this.updateFManufacturer.bind(this)}
+                          >
+                            <option value="" selected disabled hidden>
+                              First Manufacturer
+                            </option>
+                            {
+                              this.state.manufacturers.map(m => {
+                                return <option value={m.mname}
+                                               name='firstmname'
+                                               key={m.mname}
+                                               required>{m.mname}</option>
+                              })
+                            }
+                          </select>
+                        </td>
+                        <td>
+                          <select name='smname'
+                                  ref="secondManufacturer"
+                                  onChange={this.updateSManufacturer.bind(this)}
+                          >
+                            <option value="" selected disabled hidden>
+                              Second Manufacturer
+                            </option>
+                            {
+                              this.state.manufacturers.map(m => {
+                                return <option value={m.mname}
+                                               name='secondmname'
+                                               key={m.mname}
+                                               required>{m.mname}</option>
+                              })
+                            }
+                          </select>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td className="w-25 option">Phone Name</td>
+                        <td>
                           <select
                               ref="firstPhone"
                               onChange={this.getFirstPhone.bind(this)}
                           >
                             <option value="" selected disabled hidden>
-                              Choose here
+                              First Phone
                             </option>
                             {this.state.phones.map(phone => {
-                              return (
-                                  <option
-                                      value={phone.id}
-                                      name={phone.id}
-                                      key={phone.id}
-                                      required
-                                  >
-                                    {phone.name}
-                                  </option>
-                              );
-                            })}
+                              if (phone.mname === firstManufacturer) {
+                                return (
+                                    <option
+                                        value={phone.id}
+                                        name={phone.id}
+                                        key={phone.id}
+                                        required
+                                    >
+                                      {phone.name}
+                                    </option>
+                                );
+                              }})}
                           </select>
-                        </th>
-                        <th>
+                        </td>
+                          <td>
                           <select
                               ref="secondPhone"
                               onChange={this.getSecondPhone.bind(this)}
                           >
                             <option value="" selected disabled hidden>
-                              Choose here
+                              Second Phone
                             </option>
                             {this.state.phones.map(phone => {
+                              if (phone.mname === secondManufacturer) {
                               return (
                                   <option
                                       value={phone.id}
@@ -129,15 +213,15 @@ class Comparator extends Component {
                                     {phone.name}
                                   </option>
                               );
-                            })}
+                            }})}
                           </select>
                           <br/>
-                        </th>
+                        </td>
                       </tr>
                       </thead>
                       <tbody>
                       <tr>
-                        <td></td>
+                        <td className="w-25 option">Phone Image</td>
                         <td>
                           {firstPhone.imgSource !== "" ? (
                               <img
@@ -157,7 +241,7 @@ class Comparator extends Component {
                           ) : null}
                         </td>
                       </tr>
-                      <tr>
+                      {/*<tr>
                         <td className="w-25 option">Phone Name</td>
                         <td className="">{firstPhone.name}</td>
                         <td className="">{secondPhone.name}</td>
@@ -166,11 +250,11 @@ class Comparator extends Component {
                         <td className="w-25 option">Manufacturer Name</td>
                         <td className="">{firstPhone.mname}</td>
                         <td className="">{secondPhone.mname}</td>
-                      </tr>
+                      </tr>*/}
                       <tr>
                         <td className="w-25 option">Production Year</td>
-                        <td className="">{firstPhone.prodcutionYear}</td>
-                        <td className="">{secondPhone.prodcutionYear}</td>
+                        <td className="">{firstPhone.productionYear}</td>
+                        <td className="">{secondPhone.productionYear}</td>
                       </tr>
                       <tr>
                         <td className="option">Technology</td>

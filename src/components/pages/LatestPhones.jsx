@@ -7,7 +7,7 @@ export default class LatestPhones extends Component {
     latestPhones: []
   };
   async componentDidMount() {
-    const url = "http://localhost/api/phone/get_latest_phones.php";
+    const url = "http://localhost:8080/api/phones";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ latestPhones: data, loading: false });

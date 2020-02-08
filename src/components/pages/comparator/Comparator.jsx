@@ -7,55 +7,61 @@ class Comparator extends Component {
     manufacturers: [],
     firstManufacturer: "",
     secondManufacturer: "",
-    firstPhone: {
-      name: "",
-      productionYear: "",
-      mname: "",
-      displaySize: "",
-      displayType: "",
-      displayResolution: "",
-      weight: "",
-      battery: "",
-      mainCamera: "",
-      selfieCamera: "",
-      os: "",
-      technology: "",
-      sound: "",
-      imgSource: ""
-    },
-    secondPhone: {
-      name: "",
-      productionYear: "",
-      mname: "",
-      displaySize: "",
-      displayType: "",
-      displayResolution: "",
-      weight: "",
-      battery: "",
-      mainCamera: "",
-      selfieCamera: "",
-      os: "",
-      technology: "",
-      sound: "",
-      imgSource: ""
-    },
-    phoneDefault: {
-      id: "",
-      name: "",
-      productionYear: "",
-      mname: "",
-      displaySize: "",
-      displayType: "",
-      displayResolution: "",
-      weight: "",
-      battery: "",
-      mainCamera: "",
-      selfieCamera: "",
-      os: "",
-      technology: "",
-      sound: "",
-      imgSource: ""
-    }
+    firstPhone: [
+      {
+        name: "",
+        productionYear: "",
+        mname: "",
+        displaySize: "",
+        displayType: "",
+        displayResolution: "",
+        weight: "",
+        battery: "",
+        mainCamera: "",
+        selfieCamera: "",
+        os: "",
+        technology: "",
+        sound: "",
+        imgSource: ""
+      }
+    ],
+    secondPhone: [
+      {
+        name: "",
+        productionYear: "",
+        mname: "",
+        displaySize: "",
+        displayType: "",
+        displayResolution: "",
+        weight: "",
+        battery: "",
+        mainCamera: "",
+        selfieCamera: "",
+        os: "",
+        technology: "",
+        sound: "",
+        imgSource: ""
+      }
+    ],
+    phoneDefault: [
+      {
+        id: "",
+        name: "",
+        productionYear: "",
+        mname: "",
+        displaySize: "",
+        displayType: "",
+        displayResolution: "",
+        weight: "",
+        battery: "",
+        mainCamera: "",
+        selfieCamera: "",
+        os: "",
+        technology: "",
+        sound: "",
+        imgSource: ""
+      }
+    ]
   };
 
   componentDidMount() {
@@ -106,8 +112,8 @@ class Comparator extends Component {
 
   render() {
     if (this.state.loading) return <div>Loading...</div>;
-    const firstPhone = this.state.firstPhone;
-    const secondPhone = this.state.secondPhone;
+    const firstPhone = this.state.firstPhone[0];
+    const secondPhone = this.state.secondPhone[0];
     const firstManufacturer = this.state.firstManufacturer;
     const secondManufacturer = this.state.secondManufacturer;
     return (
@@ -183,7 +189,9 @@ class Comparator extends Component {
                               First Phone
                             </option>
                             {this.state.phones.map(phone => {
-                              if (phone.mname === firstManufacturer) {
+                              if (
+                                phone.manufacturer.mname === firstManufacturer
+                              ) {
                                 return (
                                   <option
                                     value={phone.id}
@@ -207,7 +215,9 @@ class Comparator extends Component {
                               Second Phone
                             </option>
                             {this.state.phones.map(phone => {
-                              if (phone.mname === secondManufacturer) {
+                              if (
+                                phone.manufacturer.mname === secondManufacturer
+                              ) {
                                 return (
                                   <option
                                     value={phone.id}

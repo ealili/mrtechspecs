@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DeleteThumbnail from "./DeleteThumbnail";
+import Redirect from "react-router-dom/Redirect";
 
 export default class DeletePhone extends Component {
   state = {
@@ -14,6 +15,9 @@ export default class DeletePhone extends Component {
   }
 
   render() {
+    if (localStorage.getItem('user') == null) {
+      return (<Redirect to={'/login'}/>)
+    }
     if (this.state.loading) {
       return <div className="lds-hourglass"></div>;
     } else {

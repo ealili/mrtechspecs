@@ -20,7 +20,7 @@ async handleSubmit(e) {
     e.preventDefault();
 
     //POST method
-    const response = await fetch('http://localhost/api/administrator/find_administrator.php', {
+    const response = await fetch('http://localhost:8080/api/administrator', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({username: this.state.username, password: this.state.password}),

@@ -6,7 +6,7 @@ class PhoneSpecifications extends Component {
     phoneSpecs: null
   };
   async componentDidMount() {
-    const url = `http://localhost/api/phone/get_phone.php?id=${this.props.match.params.id}`
+    const url = `http://localhost:8080/api/phone/${this.props.match.params.id}`
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ phoneSpecs: data, loading: false });
@@ -14,7 +14,7 @@ class PhoneSpecifications extends Component {
   render () {
     if (this.state.loading)
       return <div className="lds-hourglass"></div>
-    const requiredPhone = this.state.phoneSpecs[0]
+    const requiredPhone = this.state.phoneSpecs
     return (
       <section className="py-5">
         <div className="container">

@@ -13,7 +13,7 @@ class PhonesRoutes extends Component {
   }
 
   async componentDidMount () {
-    const url = `http://localhost/api/manufacturer/get_all_manufacturers.php`
+    const url = `http://localhost:8080/api/manufacturers`
     const response = await fetch(url)
     const data = await response.json()
     this.setState({ manufacturers: data, loading: false })

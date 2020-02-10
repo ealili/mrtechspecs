@@ -4,12 +4,12 @@ import { Link, Redirect } from "react-router-dom";
 class Admin extends Component {
   state = {
     redirect: true,
-    user: {},
+    user: {}
   };
 
   componentWillMount() {
-   if(localStorage.getItem('user')){
-      this.setState({redirect: false});
+    if (localStorage.getItem("user")) {
+      this.setState({ redirect: false });
     }
   }
 
@@ -44,7 +44,7 @@ class Admin extends Component {
           <div className="col-lg-3 col-md-4 col-xs-6">
             <Link to="/admin/delete-phone" className="nav-link">
               <i className="fa fa-trash" style={this.iconStyles}>
-                <div style={{fontSize: "25px"}}>Delete Phone</div>
+                <div style={{ fontSize: "25px" }}>Delete Phone</div>
               </i>
             </Link>
           </div>
@@ -63,14 +63,14 @@ class Admin extends Component {
           <div className="col-lg-3 col-md-4 col-xs-6">
             <Link to="/admin/remove-administrator" className="nav-link">
               <i className="fa fa-user" style={this.iconStyles}>
-                <div style={{fontSize: "25px"}}>Remove Admin</div>
+                <div style={{ fontSize: "25px" }}>Remove Admin</div>
               </i>
             </Link>
           </div>
           <div className="col-lg-3 col-md-4 col-xs-6">
             <Link to="/admin/add-administrator" className="nav-link">
               <i className="fa fa-user-plus" style={this.iconStyles}>
-                <div style={{fontSize: "25px"}}>Add Admin</div>
+                <div style={{ fontSize: "25px" }}>Add Admin</div>
               </i>
             </Link>
           </div>

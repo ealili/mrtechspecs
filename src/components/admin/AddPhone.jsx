@@ -1,27 +1,26 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import Redirect from "react-router-dom/Redirect";
 
 export default class extends Component {
-
   state = {
     loading: true,
     manufacturers: [],
     exists: false,
     buttonDisabled: false,
-    btnStyle: 'btn btn-md btn-success'
+    btnStyle: "btn btn-md btn-success"
+  };
+
+  async componentDidMount() {
+    const url = `http://localhost:8080/api/manufacturers`;
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ manufacturers: data, loading: false });
   }
 
-  async componentDidMount () {
-    const url = `http://localhost/api/manufacturer/get_all_manufacturers.php`
-    const response = await fetch(url)
-    const data = await response.json()
-    this.setState({ manufacturers: data, loading: false })
-  }
-
-  handleChange (e) {
-    let checkId = e.target.value
-    checkId = checkId.charAt(0).toLowerCase() + checkId.slice(1)
-    checkId = checkId.replace(/\s/g, '')
+  handleChange(e) {
+    let checkId = e.target.value;
+    checkId = checkId.charAt(0).toLowerCase() + checkId.slice(1);
+    checkId = checkId.replace(/\s/g, "");
     fetch(`http://localhost/api/phone/get_phone.php?id=${checkId}`)
       .then(response => response.json())
       .then(data => {
@@ -29,30 +28,29 @@ export default class extends Component {
           this.setState({
             exists: true,
             buttonDisabled: true,
-            btnStyle: 'btn btn-md btn-secondary'
-          })
+            btnStyle: "btn btn-md btn-secondary"
+          });
         } else
           this.setState({
             exists: false,
             buttonDisabled: false,
-            btnStyle: 'btn btn-md btn-success'
-          })
-      })
+            btnStyle: "btn btn-md btn-success"
+          });
+      });
   }
 
-  render () {
-    if (this.state.loading)
-      return <div className="lds-hourglass"></div>
-    if (localStorage.getItem('user')==null) {
-      return (<Redirect to={'/login'}/>)
+  render() {
+    if (this.state.loading) return <div className="lds-hourglass"></div>;
+    if (localStorage.getItem("user") == null) {
+      return <Redirect to={"/login"} />;
     }
     return (
       <div className="container">
         <div>
           <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => window.history.back()}
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => window.history.back()}
           >
             Back
           </button>
@@ -67,8 +65,11 @@ export default class extends Component {
               <label htmlFor="name" className="grey-text font-weight-light">
                 Phone Name
               </label>
-              {this.state.exists ? <span style={{ color: 'red', float: 'right' }}>* This phone already
-                  exists</span> : null}
+              {this.state.exists ? (
+                <span style={{ color: "red", float: "right" }}>
+                  * This phone already exists
+                </span>
+              ) : null}
 
               <input
                 type="text"
@@ -79,21 +80,22 @@ export default class extends Component {
                 onChange={this.handleChange.bind(this)}
                 required
               />
-              <br/>
+              <br />
               <label htmlFor="mname" className="grey-text font-weight-light">
                 Manufacturer Name
               </label>
-              <br/>
-              <select name='mname'>
-                {
-                  this.state.manufacturers.map(m => {
-                    return <option value={m.mname} name='mname' key={m.mname}
-                                   required>{m.mname}</option>
-                  })
-                }
+              <br />
+              <select name="mname">
+                {this.state.manufacturers.map(m => {
+                  return (
+                    <option value={m.mname} name="mname" key={m.mname} required>
+                      {m.mname}
+                    </option>
+                  );
+                })}
               </select>
-              <br/>
-              <br/>
+              <br />
+              <br />
               <label
                 htmlFor="displayType"
                 className="grey-text font-weight-light"
@@ -107,7 +109,7 @@ export default class extends Component {
                 placeholder="Display Type"
                 required
               />
-              <br/>
+              <br />
               <label
                 htmlFor="displayRes"
                 className="grey-text font-weight-light"
@@ -121,7 +123,7 @@ export default class extends Component {
                 placeholder="Display Resolution"
                 required
               />
-              <br/>
+              <br />
               <label
                 htmlFor="displaySize"
                 className="grey-text font-weight-light"
@@ -135,8 +137,11 @@ export default class extends Component {
                 placeholder="Display Size"
                 required
               />
-              <br/>
-              <label htmlFor="selfieCamera" className="grey-text font-weight-light">
+              <br />
+              <label
+                htmlFor="selfieCamera"
+                className="grey-text font-weight-light"
+              >
                 Selfie Camera
               </label>
               <input
@@ -146,8 +151,11 @@ export default class extends Component {
                 placeholder="Selfie Camera"
                 required
               />
-              <br/>
-              <label htmlFor="mainCamera" className="grey-text font-weight-light">
+              <br />
+              <label
+                htmlFor="mainCamera"
+                className="grey-text font-weight-light"
+              >
                 Main Camera
               </label>
               <input
@@ -157,7 +165,7 @@ export default class extends Component {
                 placeholder="Main Camera"
                 required
               />
-              <br/>
+              <br />
 
               <label htmlFor="tech" className="grey-text font-weight-light">
                 Technology
@@ -169,7 +177,7 @@ export default class extends Component {
                 placeholder="technology"
                 required
               />
-              <br/>
+              <br />
               <label htmlFor="weight" className="grey-text font-weight-light">
                 weight
               </label>
@@ -180,7 +188,7 @@ export default class extends Component {
                 placeholder="weight"
                 required
               />
-              <br/>
+              <br />
               <label htmlFor="sound" className="grey-text font-weight-light">
                 Sound
               </label>
@@ -191,7 +199,7 @@ export default class extends Component {
                 placeholder="sound"
                 required
               />
-              <br/>
+              <br />
               <label htmlFor="os" className="grey-text font-weight-light">
                 Operating System
               </label>
@@ -202,8 +210,11 @@ export default class extends Component {
                 placeholder="os"
                 required
               />
-              <br/>
-              <label htmlFor="productionYear" className="grey-text font-weight-light">
+              <br />
+              <label
+                htmlFor="productionYear"
+                className="grey-text font-weight-light"
+              >
                 Production Year
               </label>
               <input
@@ -216,7 +227,7 @@ export default class extends Component {
                 placeholder="productionYear"
                 required
               />
-              <br/>
+              <br />
               <label htmlFor="battery" className="grey-text font-weight-light">
                 Battery
               </label>
@@ -227,7 +238,7 @@ export default class extends Component {
                 placeholder="battery"
                 required
               />
-              <br/>
+              <br />
               <label htmlFor="imgURL" className="grey-text font-weight-light">
                 Image URL
               </label>
@@ -238,17 +249,20 @@ export default class extends Component {
                 placeholder="imgURL"
                 required
               />
-              <br/>
+              <br />
               <div className="text-center py-4 mt-3">
-                <button type="submit" className={this.state.btnStyle}
-                        disabled={this.state.buttonDisabled}>
-                  Add phone to database{' '}
+                <button
+                  type="submit"
+                  className={this.state.btnStyle}
+                  disabled={this.state.buttonDisabled}
+                >
+                  Add phone to database{" "}
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

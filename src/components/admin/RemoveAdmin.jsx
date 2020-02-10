@@ -1,27 +1,30 @@
+import React, { Component } from "react";
 import React, {Component} from 'react';
 import Redirect from "react-router-dom/Redirect";
 
 export default class RemoveAdmin extends Component {
-    state = {
-        loading: true,
-        users: [
-            {
-                name: "",
-                username: "",
-            }
-        ],
-        buttonDisabled: false,
-        btnStyle: "btn btn-md btn-success",
-    };
-    async componentDidMount() {
-        const url = "http://localhost/api/administrator/get_all_administrators.php";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({ users: data, loading: false });
-        console.log(this.state.users);
-    }
+  state = {
+    loading: true,
+    users: [
+      {
+        name: "",
+        username: ""
+      }
+    ],
+    buttonDisabled: false,
+    btnStyle: "btn btn-md btn-success"
+  };
 
-    render()
+  async componentDidMount() {
+      // Should be changed to call the java api
+    const url = "http://localhost/api/administrator/get_all_administrators.php";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ users: data, loading: false });
+    console.log(this.state.users);
+  }
+
+   render()
     {
         if (localStorage.getItem('user') == null) {
             return (<Redirect to={'/login'}/>)
@@ -80,4 +83,5 @@ export default class RemoveAdmin extends Component {
             );
         }
     }
+  }
 }

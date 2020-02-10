@@ -10,7 +10,7 @@ export default class Manufacturer extends Component {
   fetchData = () => {
     this.setState({ isFetching: true });
     fetch(
-      `http://localhost/api/phone/get_company_phones.php?mname=${this.props.match.params.mname}`
+      `http://localhost:8080/api/phones/${this.props.match.params.mname}`
     )
       .then(res => res.json())
       .then(data =>
